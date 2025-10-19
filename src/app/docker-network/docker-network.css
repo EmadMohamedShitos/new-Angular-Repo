@@ -1,0 +1,47 @@
+:host {
+  background-color: #ffffff;
+  font-family: 'Georgia', serif;
+  color: #2c2c2c;
+  line-height: 1.7;
+  display: block;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(18, 38, 63, 0.06);
+}
+
+h3 {
+  font-weight: bold;
+  color: #0d6efd;
+  border-bottom: 3px solid #0d6efd;
+  display: inline-block;
+  padding-bottom: 4px;
+  margin-bottom: 15px;
+}
+
+pre {
+  background: #1e1e2f;
+  color: #f8f8f2;
+  border-radius: 10px;
+  border-left: 4px solid #0d6efd;
+  padding: 12px;
+  font-family: 'Consolas', monospace;
+  font-size: 0.95rem;
+  overflow-x: auto;
+}
+
+.section-label {
+  color: #6c757d;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+header img {
+  display: block;
+  margin: 0 auto;
+}

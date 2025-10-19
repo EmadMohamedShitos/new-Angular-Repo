@@ -1,0 +1,178 @@
+<header class="text-center py-5">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png" width="100" alt="Docker Logo">
+  <h1 class="mt-3 text-primary">Dockerfile & Build Process — Advanced Concepts</h1>
+  <p class="text-secondary fs-6">Advanced understanding of Dockerfile structure and build process for real-world applications.</p>
+</header>
+
+<main class="container">
+
+  <!-- Section 1 — Core Concept -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 1 — Core Concept</p>
+      <h3><i class="bi bi-file-earmark-code"></i> What is a Dockerfile?</h3>
+      <p>
+        A <strong>Dockerfile</strong> is a plain text script that defines how to build a Docker image automatically.
+        It contains step-by-step instructions that Docker uses to assemble the image.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2 — Visual Overview -->
+  <section class="my-5">
+    <div class="card p-4 text-center" style="min-height: 350px;">
+      <p class="section-label">Section 2 — Visual Overview</p>
+      <h3><i class="bi bi-diagram-3"></i> Build Process Overview</h3>
+      <img src="./Dockerfile.png" alt="Dockerfile Build Process" class="img-fluid rounded shadow-sm my-4 mx-auto d-block" style="max-width: 70%; border: 3px solid #0d6efd;">
+      <p class="text-muted mb-0">
+        The Dockerfile defines every layer of the image — from base image to final executable container.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3 — Dockerfile Instructions -->
+  <section class="my-5">
+    <div class="card p-4 bg-info bg-opacity-10">
+      <p class="section-label">Section 3 — Dockerfile Instructions</p>
+      <h3><i class="bi bi-code-slash"></i> Main Dockerfile Commands Explained</h3>
+      <ul>
+        <li><strong>FROM</strong> — sets the base image, e.g., <code>FROM node:18-alpine</code></li>
+        <li><strong>LABEL</strong> — adds metadata like author, project, description.</li>
+        <li><strong>WORKDIR</strong> — sets working directory inside the container.</li>
+        <li><strong>ENV</strong> — sets environment variables.</li>
+        <li><strong>COPY</strong> — copies files from host to container.</li>
+        <li><strong>RUN</strong> — executes commands during build.</li>
+        <li><strong>EXPOSE</strong> — defines the port container listens on.</li>
+        <li><strong>CMD</strong> — default command to start container.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 4 — Dockerfile Example -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 4 — Dockerfile (Annotated)</p>
+      <h3><i class="bi bi-journal-code"></i> Dockerfile Example</h3>
+
+      <pre class="code-block">
+<span class="df-comment"># Dockerfile for Angular Application</span>
+<span class="df-comment"># Step 1: Use Node.js as the base image</span>
+FROM node:18-alpine
+
+<span class="df-comment"># Step 2: Add labels for metadata</span>
+LABEL maintainer="yourname@example.com"
+LABEL project="Angular Docker Setup"
+
+<span class="df-comment"># Step 3: Set working directory</span>
+WORKDIR /usr/src/app
+
+<span class="df-comment"># Step 4: Copy package.json files and install dependencies</span>
+COPY package*.json ./
+RUN npm install -g @angular/cli
+RUN npm install
+
+<span class="df-comment"># Step 5: Copy all project files</span>
+COPY . .
+
+<span class="df-comment"># Step 6: Set environment variable</span>
+ENV PORT=4200
+
+<span class="df-comment"># Step 7: Expose port</span>
+EXPOSE 4200
+
+<span class="df-comment"># Step 8: Default command</span>
+CMD ["npm", "start"]
+      </pre>
+
+      <!-- Explanation Cards -->
+      <div class="row g-4 mt-4">
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 1</p>
+            <h5 class="text-primary">FROM node:18-alpine</h5>
+            <p>Sets base image for Node.js Angular project.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 2</p>
+            <h5 class="text-primary">LABEL maintainer="yourname@example.com"</h5>
+            <p>Adds author metadata.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 3</p>
+            <h5 class="text-primary">WORKDIR /usr/src/app</h5>
+            <p>Sets container working directory.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 4</p>
+            <h5 class="text-primary">COPY package*.json ./</h5>
+            <p>Copies package files to container for npm install.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 5</p>
+            <h5 class="text-primary">RUN npm install -g @angular/cli</h5>
+            <p>Installs Angular CLI globally.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 6</p>
+            <h5 class="text-primary">RUN npm install</h5>
+            <p>Installs project dependencies.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 7</p>
+            <h5 class="text-primary">COPY . .</h5>
+            <p>Copies all project files into container.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 8</p>
+            <h5 class="text-primary">ENV PORT=4200</h5>
+            <p>Sets Angular app port environment variable.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 9</p>
+            <h5 class="text-primary">EXPOSE 4200</h5>
+            <p>Exposes port for container networking.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Line 10</p>
+            <h5 class="text-primary">CMD ["npm","start"]</h5>
+            <p>Default command to start Angular dev server.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 5 — Summary -->
+  <section class="my-5">
+    <div class="card p-4">
+      <p class="section-label">Section 5 — Summary</p>
+      <h3><i class="bi bi-lightbulb"></i> Quick Recap</h3>
+      <ul>
+        <li>Dockerfile defines all build instructions for images.</li>
+        <li>Each instruction creates a new image layer.</li>
+        <li>Angular projects can run fully inside Docker using Node base images.</li>
+        <li>Use <code>docker build</code> and <code>docker run</code> to build and test easily.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>

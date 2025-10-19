@@ -1,0 +1,96 @@
+<header class="text-center py-5">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png" width="120" alt="Docker Logo">
+  <h1 class="mt-3 text-primary">Docker Networking — CNI Overview</h1>
+  <p class="text-secondary fs-6">Understanding how Docker networks connect containers using CNI.</p>
+</header>
+
+<main class="container">
+
+  <!-- Section 1 -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 1 — Core Idea</p>
+      <h3><i class="bi bi-diagram-3"></i> Main Concept</h3>
+      <p>
+        Docker networking connects containers together and with the outside world using 
+        <strong>CNI (Container Network Interface)</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+<section class="my-5">
+  <div class="card p-4 text-center" style="min-height: 400px;">
+    <p class="section-label">Section 2 — Visual Overview</p>
+    <h3><i class="bi bi-diagram-3"></i> Docker Network Structure</h3>
+    <img 
+      src="dockernetwork.jpg" 
+      alt="Docker Network Diagram" 
+      class="img-fluid rounded shadow-sm my-4 mx-auto d-block" 
+      style="max-width: 85%; border: 3px solid #0d6efd;" 
+    />
+    <p class="text-muted mb-0">
+      Illustration of how Docker connects containers and networks.
+    </p>
+  </div>
+</section>
+
+  <!-- Section 3 -->
+  <section class="my-5">
+    <div class="card p-4 bg-info bg-opacity-10">
+      <p class="section-label">Section 3 — CNI Drivers</p>
+      <h3><i class="bi bi-plug"></i> CNI Drivers</h3>
+      <table class="table table-bordered table-striped mt-3">
+        <thead class="table-primary text-center">
+          <tr>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bridge</strong></td>
+            <td>Creates a virtual private network between containers (default).</td>
+          </tr>
+          <tr>
+            <td><strong>Host</strong></td>
+            <td>Containers share the host network directly.</td>
+          </tr>
+          <tr>
+            <td><strong>Null</strong></td>
+            <td>No network assigned — completely isolated.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 4 — Key Commands</p>
+      <h3><i class="bi bi-terminal"></i> Common Network Commands</h3>
+
+      <p><strong>Create a custom network:</strong></p>
+      <pre><code>docker network create mynet --subnet 10.10.10.0/24 --gateway 10.10.10.1 --driver bridge</code></pre>
+
+      <p><strong>Run container within a network:</strong></p>
+      <pre><code>docker run -d --name lab1 -p 82:80 --hostname lab1 --restart always --network mynet nginx</code></pre>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="my-5">
+    <div class="card p-4">
+      <p class="section-label">Section 5 — Summary</p>
+      <h3><i class="bi bi-lightbulb"></i> Quick Recap</h3>
+      <ul>
+        <li>Docker uses <strong>CNI</strong> to manage container networking.</li>
+        <li>Default mode is <strong>Bridge</strong>.</li>
+        <li>Custom networks can be created with <code>docker network create</code>.</li>
+        <li>Containers can join networks using <code>--network</code> flag.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>

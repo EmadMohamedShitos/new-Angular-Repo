@@ -1,0 +1,155 @@
+<header class="text-center py-5">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png"
+    alt="Docker Logo"
+    width="130"
+  />
+  <h1 class="mt-3 text-primary">Docker Compose</h1>
+  <p class="text-secondary fs-6">
+    An academic and practical guide for multi-container Docker applications.
+  </p>
+</header>
+
+<main class="container">
+
+  <!-- Section 1 -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 1 — Introduction</p>
+      <h3><i class="bi bi-box-seam"></i> What is Docker Compose?</h3>
+      <p>
+        Docker Compose is a tool to define and manage <strong>multi-container Docker applications</strong>
+        using a single <code>docker-compose.yml</code> file.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="my-5">
+    <div class="card p-4 bg-info bg-opacity-10">
+      <p class="section-label">Section 2 — Benefits</p>
+      <h3><i class="bi bi-check-circle"></i> Why Use Docker Compose?</h3>
+      <ul>
+        <li>Manage multiple containers at once (web, database, etc.).</li>
+        <li>Define networks and volumes easily.</li>
+        <li>Consistency across different environments.</li>
+        <li>Simple commands to start, stop, and build containers.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 3 — Example Overview</p>
+      <h3><i class="bi bi-info-circle"></i> Overview of the Example</h3>
+      <p>In this example, we have a simple multi-container application consisting of:</p>
+      <ul>
+        <li><strong>Web service:</strong> An Nginx container serving static HTML files.</li>
+        <li><strong>Database service:</strong> A MariaDB container storing application data.</li>
+        <li><strong>Network:</strong> Both containers communicate through <code>app-network</code>.</li>
+        <li><strong>Volumes:</strong> Persistent database storage via <code>db_data</code>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 4 — Example docker-compose.yml</p>
+      <h3><i class="bi bi-filetype-yml"></i> Example File</h3>
+      <pre><code>version: "3.9"
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - app-network
+
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: mydb
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  db_data:
+
+networks:
+  app-network:</code></pre>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section class="my-5">
+    <div class="card p-4 bg-info bg-opacity-10">
+      <p class="section-label">Section 5 — YAML File Structure</p>
+      <h3><i class="bi bi-diagram-3"></i> Understanding docker-compose.yml</h3>
+      <ul>
+        <li><strong>version:</strong> Defines the Compose file format version. Here, <code>"3.9"</code>.</li>
+        <li><strong>services:</strong> Definitions of all containers (e.g., <code>web</code> and <code>db</code>).
+          <ul>
+            <li><code>image:</code> Docker image used for the container.</li>
+            <li><code>ports:</code> Maps container ports to the host machine.</li>
+            <li><code>volumes:</code> Mounts directories or named volumes for data persistence.</li>
+            <li><code>environment:</code> Environment variables for the container.</li>
+            <li><code>networks:</code> Container networking.</li>
+          </ul>
+        </li>
+        <li><strong>volumes:</strong> Named volumes for persistent data.</li>
+        <li><strong>networks:</strong> Custom networks for container communication.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 6 — Commands</p>
+      <h3><i class="bi bi-terminal"></i> Docker Compose Commands</h3>
+      <pre><code>docker-compose up        # Start all containers
+docker-compose up -d     # Start containers in background
+docker-compose down      # Stop and remove containers, networks, volumes
+docker-compose ps        # List running containers
+docker-compose logs      # Show logs of all containers
+docker-compose build     # Build images defined in the Dockerfile</code></pre>
+    </div>
+  </section>
+
+  <!-- Section 7 -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 7 — YAML File Composition</p>
+      <h3><i class="bi bi-list-columns"></i> How docker-compose.yml is Structured</h3>
+      <p>
+        The <code>docker-compose.yml</code> file follows a hierarchical structure made up of <strong>Sections</strong>,
+        <strong>Items</strong>, and <strong>key:value</strong> pairs.
+      </p>
+      <ul>
+        <li><strong>Section:</strong> Top-level category (services, volumes, networks).</li>
+        <li><strong>Item:</strong> Name of a specific container or element.</li>
+        <li><strong>key : value</strong> pairs: Config details for each item.</li>
+      </ul>
+      <p class="mt-3 fw-bold text-primary">Common keys inside each service:</p>
+      <ul>
+        <li><code>image:</code> Docker image used for the container.</li>
+        <li><code>container_name:</code> Optional custom container name.</li>
+        <li><code>ports:</code> Maps container ports (e.g., "8080:80").</li>
+        <li><code>volumes:</code> Attach directories or named volumes.</li>
+        <li><code>networks:</code> Connect container to networks.</li>
+      </ul>
+      <p class="mt-3">
+        This hierarchical format ensures Docker Compose reads and deploys multi-container setups in a structured and maintainable way.
+      </p>
+    </div>
+  </section>
+
+</main>

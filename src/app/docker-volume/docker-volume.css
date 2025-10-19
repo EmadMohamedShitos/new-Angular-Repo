@@ -1,0 +1,72 @@
+:host {
+  display: block;
+  font-family: 'Georgia', serif;
+  color: #2c2c2c;
+  background-color: #ffffff;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.card {
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(18, 38, 63, 0.06);
+}
+
+h3 {
+  font-weight: bold;
+  color: #0d6efd;
+  border-bottom: 3px solid #0d6efd;
+  display: inline-block;
+  padding-bottom: 4px;
+  margin-bottom: 15px;
+}
+
+pre, .code-block {
+  background: #1e1e2f;
+  color: #f8f8f2;
+  border-radius: 10px;
+  border-left: 4px solid #0d6efd;
+  padding: 12px;
+  font-family: 'Consolas', monospace;
+  font-size: 0.95rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.section-label {
+  color: #6c757d;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.card-soft {
+  background: rgba(13,110,253,0.08);
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(18,38,63,0.06);
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.code-block {
+  background: #1e1e2f;
+  color: #f8f8f2;
+  border-radius: 10px;
+  padding: 12px;
+  border-left: 4px solid #0d6efd;
+  font-family: Consolas, monospace;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.code-block .comment {
+  color: #6ee07a; /* أخضر فاتح للتعليقات */
+}

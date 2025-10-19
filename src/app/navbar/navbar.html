@@ -1,0 +1,25 @@
+<nav class="navbar navbar-light bg-white fixed-top shadow-sm">
+  <div class="container-fluid d-flex align-items-center justify-content-center gap-4">
+    <!-- Docker Logo -->
+    <a class="navbar-brand" routerLink="/">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png" 
+           width="180" 
+           alt="Docker Logo">
+    </a>
+
+    <!-- Navbar Links -->
+    <ul class="navbar-nav flex-row gap-3 mb-0">
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/understand-docker" routerLinkActive="active">Understanding Docker</a></li>
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/docker-installation" routerLinkActive="active">Docker Installation</a></li>
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/docker-basic" routerLinkActive="active">Basic Architecture</a></li>
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/docker-commands" routerLinkActive="active">Commands</a></li>
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/docker-network" routerLinkActive="active">Network</a></li>
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/docker-volume" routerLinkActive="active">Volume</a></li>
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/docker-file" routerLinkActive="active">Docker file</a></li>
+      <li class="nav-item"><a class="nav-link text-dark px-3 py-2 rounded" routerLink="/docker-compose" routerLinkActive="active">Docker Compose</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Space for fixed navbar -->
+<div style="height: 90px;"></div>

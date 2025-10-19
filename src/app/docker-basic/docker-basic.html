@@ -1,0 +1,134 @@
+<header class="text-center py-5">
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png"
+    alt="Docker Logo"
+    width="130"
+  />
+  <h1 class="mt-3 text-primary">Docker Basic Architecture — Commands & Flags</h1>
+  <p class="text-secondary fs-6">
+    Understanding Docker's core workflow: images, containers, and essential flags.
+  </p>
+</header>
+
+<main class="container">
+
+  <!-- Architecture Diagram Section -->
+  <section class="my-5">
+    <div class="card p-4 bg-light text-center">
+      <p class="section-label">Overview Diagram</p>
+      <h3><i class="bi bi-diagram-3"></i> Visual Flow</h3>
+
+      <div class="diagram-wrap">
+        <div class="flags-row">
+          <div class="flag">Docker <span class="muted">Main command</span></div>
+          <div class="flag">create <span class="muted">Sub command</span></div>
+          <div class="flag">--name <span class="muted">set container name</span></div>
+          <div class="flag">-p <span class="muted">set host:container port</span></div>
+          <div class="flag">--hostname <span class="muted">set container hostname</span></div>
+          <div class="flag">&lt;image-name&gt; <span class="muted">pull/run image</span></div>
+        </div>
+      </div>
+
+      <p class="mt-3 text-muted small">
+        This diagram visually connects the Docker image and container workflow,
+        showing how each flag fits the process.
+      </p>
+    </div>
+  </section>
+
+  <!-- Step 1: Create or Download Image -->
+  <section class="my-5">
+    <div class="card p-4 bg-info bg-opacity-10">
+      <p class="section-label">Step 1 — Create or Download Image</p>
+      <h3><i class="bi bi-file-earmark-code"></i> Creating / Pulling Docker Images</h3>
+      <p><strong>Create a Docker image for your app (via Dockerfile):</strong></p>
+      <pre><code>docker build -t myapp .</code></pre>
+
+      <p><strong>Download (pull) an image from Docker Hub:</strong></p>
+      <pre><code>docker pull &lt;image-name&gt;</code></pre>
+    </div>
+  </section>
+
+  <!-- Step 2: Create Container -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Step 2 — Create Container</p>
+      <h3><i class="bi bi-box-seam"></i> Creating Containers</h3>
+      <p><strong>Create a container with specific name, port, and hostname:</strong></p>
+      <pre><code>docker create --name lab1 -p 82:80 --hostname lab1 &lt;image-name&gt;</code></pre>
+      <p>This defines the container's name, mapped ports, and hostname before starting it.</p>
+    </div>
+  </section>
+
+  <!-- Step 3: Run Container -->
+  <section class="my-5">
+    <div class="card p-4 bg-info bg-opacity-10">
+      <p class="section-label">Step 3 — Run Container</p>
+      <h3><i class="bi bi-play-circle"></i> Running Containers</h3>
+      <p><strong>Run container in detached mode (background):</strong></p>
+      <pre><code>docker run -d --name lab1 -p 82:80 --hostname lab1 &lt;image-name&gt;</code></pre>
+
+      <p><strong>Run container with restart policy:</strong></p>
+      <pre><code>docker run -d --name lab1 -p 82:80 --hostname lab1 --restart always &lt;image-name&gt;</code></pre>
+
+      <p><strong>Run with limited resources:</strong></p>
+      <pre><code>docker run -d --name lab1 -p 82:80 --hostname lab1 --restart always -m &lt;memory&gt; --cpus &lt;cpus&gt; &lt;image-name&gt;</code></pre>
+    </div>
+  </section>
+
+  <!-- Flags Explanation -->
+  <section class="my-5">
+    <div class="row g-3">
+
+      <div class="col-md-6">
+        <div class="card p-3">
+          <p class="section-label">Flag</p>
+          <h5 class="text-primary">-d (Detached Mode)</h5>
+          <p>Runs the container in the background (not directly in the terminal).</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-3">
+          <p class="section-label">Flag</p>
+          <h5 class="text-primary">--restart always</h5>
+          <p>Automatically restarts the container whenever it stops or after reboot.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-3">
+          <p class="section-label">Flag</p>
+          <h5 class="text-primary">--name</h5>
+          <p>Assigns a readable name to the container for easier reference.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-3">
+          <p class="section-label">Flag</p>
+          <h5 class="text-primary">-p (Port Mapping)</h5>
+          <p>Maps a container port to a host port, e.g. <code>-p 8080:80</code>.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-3">
+          <p class="section-label">Flag</p>
+          <h5 class="text-primary">--hostname</h5>
+          <p>Defines the hostname of the container.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card p-3">
+          <p class="section-label">Flag</p>
+          <h5 class="text-primary">Resource Limits (-m, --cpus)</h5>
+          <p>Restricts memory and CPU usage for the container, improving control and efficiency.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>

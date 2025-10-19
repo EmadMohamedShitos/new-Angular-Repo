@@ -1,0 +1,69 @@
+.navbar {
+  font-family: 'Georgia', serif;
+  padding: 0.75rem 1rem;
+}
+
+.navbar-brand img {
+  display: block;
+}
+
+.nav-link {
+  color: #000;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background-color: rgba(13, 183, 237, 0.1);
+  color: #0db7ed;
+}
+
+.nav-link.active {
+  background-color: #0db7ed;
+  color: white !important;
+}
+
+/* Hamburger button */
+.hamburger-btn {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Desktop */
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+/* Mobile / Tablet */
+@media (max-width: 992px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .navbar-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .navbar-nav.open {
+    display: flex;
+  }
+
+  .nav-item {
+    text-align: center;
+    margin: 0.25rem 0;
+  }
+
+  .container-fluid {
+    flex-wrap: wrap;
+  }
+}

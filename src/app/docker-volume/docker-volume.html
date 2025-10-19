@@ -1,0 +1,132 @@
+<header class="text-center py-5">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Docker_(container_engine)_logo.png" width="120" alt="Docker Logo">
+  <h1 class="mt-3 text-primary">Docker Volumes — Data Persistence</h1>
+  <p class="text-secondary fs-6">Learn how Docker Volumes help persist and share data between containers safely.</p>
+</header>
+
+<main class="container">
+
+  <!-- Section 1 — Core Concept -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 1 — Core Concept</p>
+      <h3><i class="bi bi-hdd-stack"></i> What is a Docker Volume?</h3>
+      <p>
+        A <strong>Docker Volume</strong> is a special storage mechanism that persists data outside of a container’s writable layer.
+        Volumes are independent of container lifecycle, meaning your data stays safe even if the container is removed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2 — Visual Diagram -->
+  <section class="my-5">
+    <div class="card p-4 text-center" style="min-height: 400px;">
+      <p class="section-label">Section 2 — Visual Overview</p>
+      <h3><i class="bi bi-diagram-3"></i> Docker Volumes Diagram</h3>
+<img src="dockervolume.png" 
+     alt="Docker Volumes Diagram" 
+     class="img-fluid rounded shadow-sm my-4 mx-auto d-block" 
+     style="max-width: 60%; border: 3px solid #0d6efd;">
+      <p class="text-muted mb-0">
+        Volumes allow containers to read/write persistent data independently of their lifecycle.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3 — Commands -->
+  <section class="my-5">
+    <div class="card p-4 bg-info bg-opacity-10">
+      <p class="section-label">Section 3 — Key Docker Volume Commands</p>
+      <h3><i class="bi bi-terminal"></i> Common Commands</h3>
+
+      <pre><code>docker volume create my_volume</code></pre>
+      <p>Create a new volume named <code>my_volume</code>.</p>
+
+      <pre><code>docker run -d -v my_volume:/app/data my_image</code></pre>
+      <p>Run a container with <code>my_volume</code> mounted at <code>/app/data</code>.</p>
+
+      <pre><code>docker volume ls</code></pre>
+      <p>List all Docker volumes.</p>
+
+      <pre><code>docker volume rm my_volume</code></pre>
+      <p>Remove a Docker volume <span class="text-danger">(must not be in use)</span>.</p>
+    </div>
+  </section>
+
+  <!-- Section 4 — Practical Example -->
+  <section class="my-5">
+    <div class="card p-4 bg-light">
+      <p class="section-label">Section 4 — Practical Example</p>
+      <h3><i class="bi bi-hdd-stack"></i> Shared Volume for Microsoft Windows Server Core</h3>
+      <p>We want to persist shared data in a volume and share it between two containers.</p>
+
+      <div class="mt-4">
+        <h5 class="text-primary">Example Overview</h5>
+        <p>
+          Both <span class="text-primary">win1</span> and <span class="text-primary">win2</span> containers mount the same <span class="text-primary">shared_data</span> volume,
+          allowing them to read and write files in the shared directory. This ensures data persistence and easy file sharing across containers.
+        </p>
+      </div>
+
+<pre class="code-block">
+<span class="comment"># Create a persistent volume for Share Data</span>
+docker volume create shared_data
+
+<span class="comment"># Run first windows container (win1) using the volume</span>
+docker run -d --name win1 -v shared_data:C:\app\data mcr.microsoft.com/windows/servercore:ltsc2019 powershell -Command "Start-Sleep -Seconds 3600"
+
+<span class="comment"># Run second windows container (win2) using the same volume</span>
+docker run -d --name win2 -v shared_data:C:\app\data mcr.microsoft.com/windows/servercore:ltsc2019 powershell -Command "Start-Sleep -Seconds 3600"
+</pre>
+
+
+      <!-- Notes — Fixed Cards -->
+      <div class="row g-4 mt-4">
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Command</p>
+            <h5 class="text-primary">docker volume create</h5>
+            <p>Creates a persistent storage volume independent of containers.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Command</p>
+            <h5 class="text-primary">docker run -v</h5>
+            <p>Mounts a volume inside a container for persistent storage.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Command</p>
+            <h5 class="text-primary">docker volume ls</h5>
+            <p>Lists all existing volumes in Docker.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3 card-soft">
+            <p class="section-label">Command</p>
+            <h5 class="text-primary">docker volume rm</h5>
+            <p>Removes a volume. <span class="text-danger">Must not be in use by any container.</span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 5 — Summary -->
+  <section class="my-5">
+    <div class="card p-4">
+      <p class="section-label">Section 5 — Summary</p>
+      <h3><i class="bi bi-lightbulb"></i> Key Takeaways</h3>
+      <ul>
+        <li>Docker Volumes persist data independently of container lifecycle.</li>
+        <li>Volumes can be shared between multiple containers.</li>
+        <li>Use volumes for databases, logs, or any data that must survive container removal.</li>
+        <li>Commands: create, mount (-v), list, and remove volumes.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
